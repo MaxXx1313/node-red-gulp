@@ -1,0 +1,34 @@
+<script type="text/javascript">
+    RED.nodes.registerType('gulp src',{
+        category: 'gulp',
+        //color: '#cf4646',
+        color: '#FFF',
+        defaults: {
+            name: {value:""},
+            globs: {value:"", required:true }
+        },
+        inputs:1,
+        outputs:1,
+        icon: "gulp.png",
+        label: function() {
+            return this.name||"gulp src";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="gulp src">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-globs"><i class="icon-tag"></i> Glob </label>
+        <input type="text" id="node-input-globs" placeholder="Path">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="gulp src">
+    <p>
+        https://github.com/gulpjs/gulp/blob/master/docs/API.md#gulpsrcglobs-options
+    </p>
+</script>   

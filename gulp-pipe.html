@@ -1,0 +1,54 @@
+<script type="text/javascript">
+
+    var gulp_modules = [];
+    RED.comms.subscribe("gulp_pipe_list", function(type, data){
+        if(type!="gulp_pipe_list") return;
+        //console.log("gulp_pipe_list", data);
+        gulp_modules = data;
+    });
+
+    RED.nodes.registerType('gulp pipe',{
+        category: 'gulp',
+        //color: '#cf4646',
+        color: '#FFF',
+        defaults: {
+            name: {value:""},
+            module: {value:"", required:true },
+            arg1: {value:""}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "pipe.png",
+        label: function() {
+            return this.name||"gulp pipe";
+        },
+        oneditprepare:function(form, config){
+            var options = '';
+            for (var i = gulp_modules.length - 1; i >= 0; i--) {
+                options += '<option value="%1">%1</option>'.replace(/%1/g, gulp_modules[i] );
+            };
+            $('#node-input-module').html(options);
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="gulp pipe">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-module"><i class="icon-cog"></i> Pipe module</label>
+        <select id="node-input-module" placeholder="Module"> </select>
+    </div>
+     <div class="form-row">
+        <label for="node-input-arg1"><i class="icon-tag"></i> arg1 </label>
+        <input type="text" id="node-input-arg1" placeholder="arg1">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="gulp pipe">
+    <p>
+        https://github.com/gulpjs/gulp/blob/master/docs/API.md#gulpsrcglobs-options
+    </p>
+</script>   
