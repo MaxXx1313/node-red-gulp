@@ -12,7 +12,7 @@ module.exports = function(RED) {
 			var options = config.options && JSON.parse(config.options) || msg.options || {};
 
 			if(!globs){
-				RED.log.error('gulp src: glob must be set in config or in message');
+				RED.log.error('gulp src: globs must be set in config or in message');
 				return;
 			}
 

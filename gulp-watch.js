@@ -16,11 +16,25 @@ module.exports = function(RED) {
 
 		gulp.watch(globs, options, function(e){
 			RED.log.trace('File ' + e.path + ' was ' + e.type );
-			
-			node.send({	payload:{globs:globs, event:e}});
 
+			notifyChanges(e.type);			
+			node.send({	globs:globs, event:e});
 		});
-		node.status({fill:"green",shape:"ring",text:"Watching..."});
+
+		//
+		var _timer = null;		
+		function notifyChanges(text){
+			node.status({fill:"yellow", shape:"dot", text:text});
+
+			if(_timer) clearTimeout(_timer);
+			_timer = setTimeout(_onTick, 1000);
+		}
+
+		function _onTick(){
+			_timer = null;
+			node.status({fill:"green",shape:"ring",text:"Watching..."});
+		}
+		_onTick();
 	
 	});
 }
