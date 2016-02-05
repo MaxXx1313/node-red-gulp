@@ -1,5 +1,5 @@
 <script type="text/javascript">
-    RED.nodes.registerType('gulp src',{
+    RED.nodes.registerType('gulp watch',{
         category: 'gulp',
         //color: '#cf4646',
         color: '#FFF',
@@ -7,16 +7,16 @@
             name: {value:""},
             globs: {value:"", required:true }
         },
-        inputs:1,
+        inputs:0,
         outputs:1,
-        icon: "gulp-src.png",
+        icon: "gulp-watch.png",
         label: function() {
-            return this.name||"gulp src";
+            return this.name||"gulp watch";
         }
     });
 </script>
 
-<script type="text/x-red" data-template-name="gulp src">
+<script type="text/x-red" data-template-name="gulp watch">
     <div class="form-row">
         <label for="node-input-name"><i class="icon-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
@@ -27,7 +27,7 @@
     </div>
 </script>
 
-<script type="text/x-red" data-help-name="gulp src">
+<script type="text/x-red" data-help-name="gulp watch">
     <p>
         https://github.com/gulpjs/gulp/blob/master/docs/API.md#gulpsrcglobs-options
     </p>

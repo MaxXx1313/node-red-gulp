@@ -18,9 +18,9 @@
         },
         inputs:1,
         outputs:1,
-        icon: "pipe.png",
+        icon: "gulp-pipe.png",
         label: function() {
-            return this.name||"gulp pipe";
+            return this.name || this.module.replace(/\-/g, ' ') ||"gulp pipe";
         },
         oneditprepare:function(form, config){
             var options = '';
