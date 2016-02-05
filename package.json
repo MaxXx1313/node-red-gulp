@@ -1,0 +1,40 @@
+{
+  "name": "node-red-m-gulp",
+  "version": "0.2.0",
+  "description": "A node-red nodes for working with gulp and it's plugins",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MaxXx1313/node-red-gulp.git"
+  },
+  "keywords": [
+    "node-red", "gulp"
+  ],
+  "author": {
+    "name": "MaxXx1313"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MaxXx1313/node-red-gulp/issues"
+  },
+  "homepage": "https://github.com/MaxXx1313/node-red-gulp",
+  "node-red": {
+    "nodes": {
+      "gulp-src" : "gulp-src.js",
+      "gulp-dest" : "gulp-dest.js",
+      "gulp-watch" : "gulp-watch.js",
+      "gulp-pipe" : "gulp-pipe.js"
+    }
+  },
+  
+  "maintainers": [
+    {
+      "name": "MaxXx1313",
+      "email": "fomy.spam@gmail.com"
+    }
+  ],
+  "directories": {},
+  "readme": "README.md"
+}
