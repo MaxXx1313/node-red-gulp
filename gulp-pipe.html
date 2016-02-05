@@ -1,10 +1,10 @@
 <script type="text/javascript">
 
-    var gulp_modules = [];
+    var gulp_plugins = [];
     RED.comms.subscribe("gulp_pipe_list", function(type, data){
         if(type!="gulp_pipe_list") return;
         //console.log("gulp_pipe_list", data);
-        gulp_modules = data;
+        gulp_plugins = data;
     });
 
     RED.nodes.registerType('gulp pipe',{
@@ -13,21 +13,21 @@
         color: '#FFF',
         defaults: {
             name: {value:""},
-            module: {value:"", required:true },
+            plugin: {value:"", required:true },
             arg1: {value:""}
         },
         inputs:1,
         outputs:1,
         icon: "gulp-pipe.png",
         label: function() {
-            return this.name || this.module.replace(/\-/g, ' ') ||"gulp pipe";
+            return this.name || this.plugin && this.plugin.replace(/\-/g, ' ') ||"gulp pipe";
         },
         oneditprepare:function(form, config){
             var options = '';
-            for (var i = gulp_modules.length - 1; i >= 0; i--) {
-                options += '<option value="%1">%1</option>'.replace(/%1/g, gulp_modules[i] );
+            for (var i = gulp_plugins.length - 1; i >= 0; i--) {
+                options += '<option value="%1">%1</option>'.replace(/%1/g, gulp_plugins[i] );
             };
-            $('#node-input-module').html(options);
+            $('#node-input-plugin').html(options);
         }
     });
 </script>
@@ -38,8 +38,8 @@
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
     <div class="form-row">
-        <label for="node-input-module"><i class="icon-cog"></i> Pipe module</label>
-        <select id="node-input-module" placeholder="Module"> </select>
+        <label for="node-input-plugin"><i class="icon-cog"></i> Plugin</label>
+        <select id="node-input-plugin" placeholder="Select plugin"> </select>
     </div>
      <div class="form-row">
         <label for="node-input-arg1"><i class="icon-tag"></i> arg1 </label>
@@ -48,7 +48,19 @@
 </script>
 
 <script type="text/x-red" data-help-name="gulp pipe">
+    <h4> <strong> Description </strong> </h4>
     <p>
-        https://github.com/gulpjs/gulp/blob/master/docs/API.md#gulpsrcglobs-options
+        Pipe a flow to <a href="http://gulpjs.com/plugins/">3rd party plugin<a>. 
+        <br> You have to install plugins to make it work. Find it here: <a href="http://gulpjs.com/plugins/">http://gulpjs.com/plugins/</a>
+        <br> <strong>Note</strong>: It automatically loads only plugin named like <i>gulp-*</i>
+    </p>
+    <p>
+        You need to install <a href="http://gulpjs.com/">gulp</a> to make it work.
+        Read more <a href="https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md">here</a>
+    </p>
+    <p>
+        Please, refer to gulp documentation.
+        <br>
+        <a href="https://github.com/gulpjs/gulp/blob/master/docs/API.md#gulpsrcglobs-options">gulp.src()</a>
     </p>
 </script>   
