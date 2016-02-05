@@ -1,11 +1,13 @@
 <script type="text/javascript">
+
     RED.nodes.registerType('gulp src',{
         category: 'gulp',
         //color: '#cf4646',
         color: '#FFF',
         defaults: {
             name: {value:""},
-            globs: {value:"" }
+            globs: {value:"" },
+            options: {value: "{}" , validate: RED.validators.json() }
         },
         inputs:1,
         outputs:1,
@@ -17,6 +19,9 @@
 </script>
 
 <script type="text/x-red" data-template-name="gulp src">
+    <style>
+        .form-row select, .form-row textarea{ width: 70%; }
+    </style>
     <div class="form-row">
         <label for="node-input-name"><i class="icon-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
@@ -24,6 +29,10 @@
     <div class="form-row">
         <label for="node-input-globs"><i class="icon-tag"></i> Glob </label>
         <input type="text" id="node-input-globs" placeholder="Path">
+    </div>
+    <div class="form-row">
+        <label for="node-input-options"><i class="icon-cog"></i> Options (json) </label>
+        <textarea id="node-input-options" placeholder="Options"></textarea>
     </div>
 </script>
 

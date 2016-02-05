@@ -1,0 +1,18 @@
+<script type="text/javascript">
+		
+		if(!RED.validators.json) RED.validators.json = function(){
+        return function(val){
+            // allow empty values
+            if(!val || val.trim().length==0)
+              return true;
+
+            try{
+              var obj = JSON.parse(val);
+              return !!obj;
+            }catch(e){
+              return false;
+            }
+        }
+    }
+    
+</script>

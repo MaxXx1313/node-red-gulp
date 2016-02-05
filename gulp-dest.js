@@ -8,7 +8,7 @@ module.exports = function(RED) {
 		// https://github.com/gulpjs/gulp/blob/master/docs/API.md#gulpsrcglobs-options
 		this.on('input', function(msg){
 			var path = config.path || msg.path || '';
-			var options = config.options || msg.options || {};
+			var options = config.options && JSON.parse(config.options) || msg.options || {};
 
 			if(!path){
 				RED.log.error('gulp dest: path must be set in config or in message');

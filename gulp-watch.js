@@ -7,7 +7,7 @@ module.exports = function(RED) {
 
 		// https://github.com/gulpjs/gulp/blob/master/docs/API.md#gulpwatchglob--opts-tasks-or-gulpwatchglob--opts-cb
 		var globs = config.globs || '';
-		var options = config.options || {};
+		var options = config.options && JSON.parse(config.options) || {};
 
 		if(!globs){
 			RED.log.error('gulp watch: glob must be set');
@@ -15,11 +15,12 @@ module.exports = function(RED) {
 		}
 
 		gulp.watch(globs, options, function(e){
-			console.log('File ' + e.path + ' was ' + e.type + ', running tasks...');
+			RED.log.trace('File ' + e.path + ' was ' + e.type );
 			
 			node.send({	payload:{globs:globs, event:e}});
 
 		});
+		node.status({fill:"green",shape:"ring",text:"Watching..."});
 	
 	});
 }
