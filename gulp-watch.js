@@ -9,6 +9,11 @@ module.exports = function(RED) {
 		var globs = config.globs || '';
 		var options = config.options || {};
 
+		if(!globs){
+			RED.log.error('gulp watch: glob must be set');
+			return;
+		}
+
 		gulp.watch(globs, options, function(e){
 			console.log('File ' + e.path + ' was ' + e.type + ', running tasks...');
 			

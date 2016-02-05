@@ -14,7 +14,7 @@ module.exports = function(RED) {
   }
 
   function load_gulp_module(name){
-      console.log('Loadding gulp module: %s', name);
+			RED.log.info('Loading gulp module: '+name );
       _loaded_modules[name] = require(name);
       gulp_modules.push(name);
   }
@@ -33,6 +33,7 @@ module.exports = function(RED) {
 
 			var module_name = config.module;
 			var arg1 = config.arg1;
+
 			
 			if( module_name && _loaded_modules[module_name] ){
 				var module = _loaded_modules[module_name];
@@ -40,8 +41,8 @@ module.exports = function(RED) {
 				var p = msg.payload.pipe( module(arg1) );
 				node.send({payload:p});
 			}else{
-				// error
-				console.log('ERROR');
+				RED.log.warn('gulp pipe: unknown module. it will be skipped');
+				node.send(msg);
 			}
 			
 		});
